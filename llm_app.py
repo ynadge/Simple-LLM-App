@@ -3,7 +3,7 @@ from huggingface_hub import InferenceClient
 
 def response_generator(prompt):
 
-		client = InferenceClient(api_key="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")
+		client = InferenceClient(api_key=" ")
 
 		messages = [
 			{
