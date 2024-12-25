@@ -2,27 +2,25 @@ import streamlit as st
 from huggingface_hub import InferenceClient
 
 def response_generator(prompt):
-
-		client = InferenceClient(api_key=" ")
-
-		messages = [
-			{
+ client = InferenceClient(api_key=" ")
+ messages = [
+  {
 				"role": "user",
 				"content": prompt
 			}
 		]
-
-		response = "".join(message.choices[0].delta.content for message in client.chat_completion(
+ 
+ response = "".join(message.choices[0].delta.content for message in client.chat_completion(
 						model="microsoft/Phi-3.5-mini-instruct",
       stream = True,
 			messages=messages, 
 			max_tokens=500
 		))
+ 
+ return response
 
-		return response
 
-
-st.title('TSimple LLM App')  # App title
+st.title('Simple LLM App')  # App title
 # We want the history of prompts entered by user, so we create a session state message variable to hold all of them.
 # Streamlit apps are inherently stateful, which means that whenever a user interacts with the app, the entire app is rerun.
 # session_state helps maintain some states throughout all the reruns (caused by prompts being entered in this case).
